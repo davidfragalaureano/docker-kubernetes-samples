@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: user-test
+  name: user-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-test
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: user-test
+    spec:
+      nodeName: master
+      containers:
+      - image: app:1.0
+        name: app
+        imagePullPolicy: IfNotPresent
+        resources: {}
+# this overrides command and arguments from the dockerfile
+        command:
+        - sleep
+        args: ["1h"]
+status: {}
