@@ -1,0 +1,37 @@
+version: '3'
+services:
+  app1:
+    build:
+      context: ./app1
+      dockerfile: Dockerfile
+    image: app1
+    container_name: app1
+    ports:
+    - 9080:80
+    environment:
+    - APP_NAME=app1  
+    networks:
+    - net-nginx 
+  app2:
+    build:
+      context: ./app2
+      dockerfile: Dockerfile
+    image: app2
+    container_name: app2
+    ports:
+    - 9090:80
+    environment:
+    - APP_NAME=app2  
+    networks:
+    - net-nginx 
+  nginx:
+   image: nginx
+   container_name: nginx
+   ports: 
+   - 80:80
+   volumes:
+   - ./nginx.conf:/etc/nginx/nginx.conf:ro
+   networks:
+   - net-nginx
+networks:
+ net-nginx: 
