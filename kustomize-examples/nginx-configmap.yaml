@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  NGINX_PASSWORD: nginx
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: nginx-configmap
