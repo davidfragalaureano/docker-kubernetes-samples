@@ -1,0 +1,11 @@
+helm create my-app <---- run this to create the helm chart and generate its contents
+
+helm install my-app --set foo=bar ./my-app
+
+helm upgrade --install my-app --values=override-values.yaml --set foo=bar ./my-app
+
+helm upgrade --set foo=bar my-app ./my-app
+
+helm rollback my-app 1 --> revision number
+
+helm history my-app
