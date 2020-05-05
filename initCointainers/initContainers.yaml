@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx
+  name: nginx
+spec:
+  initContainers:
+  - image: alpine/git
+    name: git1
+    command:
+     - sh
+     - -c
+     - cd /git && git clone https://github.com/davidfragalaureano/blockchain-demo
+    volumeMounts:
+    - name: vol
+      mountPath: /git
+  - image: alpine/git
+    name: git2
+    command:
+     - sh
+     - -c
+     - cd /git/blockchain-demo && echo "test" > test.txt
+    volumeMounts:
+    - name: vol
+      mountPath: /git
+  containers:
+  - image: nginx
+    name: nginx
+    volumeMounts:
+    - name: vol
+      mountPath: /git
+    resources: {}
+  volumes:
+   - name: vol
+     emptyDir: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
