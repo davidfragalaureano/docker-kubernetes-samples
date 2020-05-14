@@ -1,0 +1,5 @@
+kubectl create deploy webapp --image=nginx:1.17.1 --dry-run -o yaml > webapp.yaml
+k rollout history deployment webapp
+k set image deployment webapp nginx=nginx1.17.4
+k rollout history deployment webapp --revision=2
+k rollout undo deployment webapp
