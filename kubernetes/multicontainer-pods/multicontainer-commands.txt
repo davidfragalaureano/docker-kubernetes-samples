@@ -1,0 +1,5 @@
+k run --restart=Never --image=busybox multicontainer --dry-run -o yaml -- sh -c "ls; sleep 3600" > multicontainer.yaml
+k create -f multicontainer.yaml
+k logs multicontainer -c multicontainer1
+
+

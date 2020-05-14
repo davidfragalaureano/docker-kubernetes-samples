@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: complex-command
+  name: complex-command
+spec:
+  containers:
+  - command:
+     - sh
+    args:
+     - -c
+     - while true; do echo 'Hi I am from main container' >> /var/log/index.html; sleep 5; done
+    image: busybox
+    name: complex-command
+    volumeMounts:
+    - name: vol
+      mountPath: /var/log
+  - image: nginx
+    name: nginx
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: vol
+      mountPath: /usr/share/nginx/html
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+  volumes:
+  - name: vol
+    emptyDir: {}
+status: {}

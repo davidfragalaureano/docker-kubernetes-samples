@@ -1,0 +1,3 @@
+k run --restart=Never --image= busybox complex-command --dry-run -o yaml -- /bin/sh -c "while true; do echo ‘Hi I am from Main container’ >> /var/log/index.html; sleep 5; done"
+k exec -it complex-command -c sh -- cat /var/log/index.html
+k exec -it  complex-command -c complex-command -- cat /var/log/index.html
