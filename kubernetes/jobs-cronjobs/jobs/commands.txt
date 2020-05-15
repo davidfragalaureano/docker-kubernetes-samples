@@ -1,0 +1,4 @@
+k create job node  --image=node -- node --version
+k create job busybox --image=busybox --dry-run -o yaml -- echo "Hello, I am from job" > job-multiple-completions.yaml
+k create -f  job-multiple-completions.yaml
+

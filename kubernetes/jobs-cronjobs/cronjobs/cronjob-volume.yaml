@@ -1,0 +1,35 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  creationTimestamp: null
+  name: pvcron
+spec:
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+      name: pvcron
+    spec:
+      parallelism: 2
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - image: busybox
+            name: pvcron
+            command:
+              - /bin/sh
+            args:
+              - -c
+              - hostname >> /tmp/vol/storage
+            volumeMounts:
+              - name: myvol
+                mountPath: /tmp/vol
+            resources: {}
+          volumes:
+          - name: myvol
+            persistentVolumeClaim:
+              claimName: myclaim
+          restartPolicy: OnFailure
+  schedule: "*/1 * * * *"
+  successfulJobsHistoryLimit: 4

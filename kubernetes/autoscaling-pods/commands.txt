@@ -1,0 +1,2 @@
+k create deployment webapp --image=nginx
+k autoscale deployment webapp --min=5 --max=15 --cpu-percent=85

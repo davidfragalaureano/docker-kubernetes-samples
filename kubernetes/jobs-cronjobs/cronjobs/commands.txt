@@ -1,0 +1,2 @@
+k create cronjob busybox --image=busybox --schedule='*/1 * * * *' --dry-run -o yaml -- sh -c " echo 'Hello from kubernetes cluster'" > 
+k create -f cronjob-volume.yaml
