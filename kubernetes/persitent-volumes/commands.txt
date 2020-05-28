@@ -1,0 +1,11 @@
+k run --restart=Never nginx --image=nginx --dry-run -o yaml > nginx.yaml
+
+# Exec into the container and verify that the path stablished on the persistent volume exists on the container
+
+k exec -it nginx -- ls /tmp/vol/
+k exec -it nginx -- echo hello > /tmp/vol/hello
+
+
+# Delete and recreate the pod, and verify that the file you created under the volume directory still remains
+k delete pod nginx 
+k create -f nginx.yaml
