@@ -1,0 +1,3 @@
+k create secret generic secret1 --from-literal=password=123465789 --dry-run -o yaml > secret1.yaml
+k run --restart=Never bash --image=bash --dry-run -o yaml -- sleep 8000
+k create cm drinks --from-file=drinks/beer --from-file=drinks/wine --from-file=drinks/water --dry-run -o yaml
