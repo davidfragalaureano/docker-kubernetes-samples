@@ -1,0 +1,4 @@
+Log into container bash1 and create a file in the shared volume. View that file and its permissions via container bash2.
+Create a pod wide Security Context so that programs on all containers are run as user 21. Apply the changes and repeat step 1. Check file permissions and owner.
+Create a Security Context for container bash1 to run programs as root. Hence files should be created as root too. Repeat step 1. Check file permissions and owner. Try do delete the file container bash1 created from container bash2. Does it work?
+Prevent container bash2 with user 21 from removing files in the share based on linux permissions in a persisted (yaml) way.
