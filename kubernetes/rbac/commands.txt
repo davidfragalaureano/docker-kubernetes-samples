@@ -1,0 +1,7 @@
+k create clusterrole secrets --verb=* --resource=secrets
+k create clusterrole secrets --verb=* --resource=pods
+k create clusterrolebinding secrets --clusterrole=secrets --user=secret@test.com
+k create clusterrolebinding pods --clusterrole=pods --user=deploy@test.com
+k auth can-i '*' pods  --as deploy@test.com
+k auth can-i get  pods  --as secret@test.com
+k auth can-i '*' secrets  --as secrets@test.com

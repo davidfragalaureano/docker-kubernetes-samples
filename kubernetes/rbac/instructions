@@ -1,0 +1,4 @@
+Todays Task: User Authorization
+Create a ClusterRole and ClusterRoleBinding so that user secret@test.com can only access and manage secrets. Test it.
+Create a ClusterRole and ClusterRoleBinding so that user deploy@test.com can only deploy and manage pods named compute. Test it.
+Create an additional ClusterRole and ClusterRoleBinding for deploy@test.com to add read permission to secrets named compute-secret. Test it.
