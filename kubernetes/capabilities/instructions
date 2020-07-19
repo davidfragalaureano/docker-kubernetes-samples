@@ -1,0 +1,1 @@
+k run --restart=Never --image=nginx nginx -o yaml --dry-run=client > nginx.yaml
